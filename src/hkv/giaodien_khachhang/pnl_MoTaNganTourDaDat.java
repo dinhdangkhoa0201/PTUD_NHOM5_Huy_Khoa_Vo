@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -79,12 +81,12 @@ public class pnl_MoTaNganTourDaDat extends JPanel  implements ListCellRenderer<T
 		// ngày khỏi hành
 
 	//	lblngayKhoiHanh = new JLabel();
-		lblngayKhoiHanh.setIcon(new ImageIcon("icon/calendar.png"));
+		lblngayKhoiHanh.setIcon(new ImageIcon("img/icon/calendar.png"));
 		panelText.add(lblngayKhoiHanh );
 
 		// ngày kết thúc
 
-		lblNgayKetThuc.setIcon(new ImageIcon("icon/calendar.png"));
+		lblNgayKetThuc.setIcon(new ImageIcon("img/icon/calendar.png"));
 		panelText.add(lblNgayKetThuc);
 		
 
@@ -92,18 +94,25 @@ public class pnl_MoTaNganTourDaDat extends JPanel  implements ListCellRenderer<T
 		// số lượng đặt
 //		lblGheTrong.setFont(new Font("Arial",1,14));
 //		lblGheTrong.setForeground(new Color(51,51,51));
-		lblGheTrong.setIcon(new ImageIcon("icon/user_info.png"));
+		lblGheTrong.setIcon(new ImageIcon("img/icon/user_info.png"));
 		panelText.add(lblGheTrong);
 		// giá
 	
 //		lblGia.setFont(new Font("Arial",1,14));
 //		lblGia.setForeground(new Color(51,51,51));
 //		lblGia.setBounds(40, 20,40,10);
-		lblGia.setIcon(new ImageIcon("icon/money-bag.png"));
+		lblGia.setIcon(new ImageIcon("img/icon/money-bag.png"));
 		panelText.add(lblGia);
-		
 		btnXemChiTiet = new JButton("Xem chi tiết");
 		panelText.add(btnXemChiTiet);
+		btnXemChiTiet.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				btnXemChiTiet.setBackground(Color.black);
+			}
+		});
 		
 		add(panelIcon,BorderLayout.WEST);
 		add(panelText,BorderLayout.CENTER);
@@ -144,6 +153,8 @@ public class pnl_MoTaNganTourDaDat extends JPanel  implements ListCellRenderer<T
 		Image newimg1 = image1.getScaledInstance(80, 80,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		aboutIcon = new ImageIcon(newimg1);  // transform it back		lblimage.setIcon(aboutIcon);
 		panelIcon.add(lblimage);
+
+
 		
 		
 		this.lblimage.setIcon(aboutIcon);

@@ -3,6 +3,7 @@ package hkv.giaodien_khachhang;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagLayout;
@@ -40,7 +41,7 @@ public class pnl_MoTaNganDatTour extends JPanel  implements ListCellRenderer<Tou
 	private JLabel lblimage= new JLabel();
 	private JPanel panelText;
 	private JPanel panelIcon;
-	private JButton btnXemChiTiet;
+	private JButton btnXemChiTiet,btnDatTour;
 	public pnl_MoTaNganDatTour() {
 //		boxMoTa();
 		UI_MoTa();
@@ -79,12 +80,12 @@ public class pnl_MoTaNganDatTour extends JPanel  implements ListCellRenderer<Tou
 		// ngày khỏi hành
 
 	//	lblngayKhoiHanh = new JLabel();
-		lblngayKhoiHanh.setIcon(new ImageIcon("icon/calendar.png"));
+		lblngayKhoiHanh.setIcon(new ImageIcon("img/icon/calendar.png"));
 		panelText.add(lblngayKhoiHanh );
 
 		// ngày kết thúc
 
-		lblNgayKetThuc.setIcon(new ImageIcon("icon/calendar.png"));
+		lblNgayKetThuc.setIcon(new ImageIcon("img/icon/calendar.png"));
 		panelText.add(lblNgayKetThuc);
 		
 
@@ -92,18 +93,17 @@ public class pnl_MoTaNganDatTour extends JPanel  implements ListCellRenderer<Tou
 		// số lượng đặt
 //		lblGheTrong.setFont(new Font("Arial",1,14));
 //		lblGheTrong.setForeground(new Color(51,51,51));
-		lblGheTrong.setIcon(new ImageIcon("icon/user_info.png"));
+		lblGheTrong.setIcon(new ImageIcon("img/icon/user_info.png"));
 		panelText.add(lblGheTrong);
 		// giá
 	
 //		lblGia.setFont(new Font("Arial",1,14));
 //		lblGia.setForeground(new Color(51,51,51));
 //		lblGia.setBounds(40, 20,40,10);
-		lblGia.setIcon(new ImageIcon("icon/money-bag.png"));
+		lblGia.setIcon(new ImageIcon("img/icon/money-bag.png"));
 		panelText.add(lblGia);
 
-		
-		
+			
 		add(panelIcon,BorderLayout.WEST);
 		add(panelText,BorderLayout.CENTER);
 //

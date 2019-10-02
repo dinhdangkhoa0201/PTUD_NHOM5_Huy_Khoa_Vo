@@ -55,7 +55,7 @@ public class UI_DatTour  extends JFrame{
 		split.setBottomComponent(BoxDienThongTin1());
 		split.setResizeWeight(0.02);
 
-		// Sự kiện khi bấm quay lại để chọn tour
+		// Sự kiện khi bấm quay lại để chọn lại  tour
 		btnQuayLai.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -85,7 +85,7 @@ public class UI_DatTour  extends JFrame{
 		Box b1;
 		box.add(b1 = Box.createHorizontalBox());
 		b1.add(btnQuayLai = new JButton("Trở về đặt Tour"));
-		ImageIcon iconTourDaDat =  new ImageIcon("icon/Backicon.png");
+		ImageIcon iconTourDaDat =  new ImageIcon("img/icon/Backicon.png");
 		Image image1 = iconTourDaDat.getImage(); // transform it 
 		Image newimg1 = image1.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		iconTourDaDat = new ImageIcon(newimg1);  // transform it back
@@ -99,7 +99,7 @@ public class UI_DatTour  extends JFrame{
 		b1.add(Box.createHorizontalStrut(20));
 		b1.add(lblThanhToan =new JLabel("2. THANH TOÁN"));
 		b1.add(Box.createHorizontalStrut(20));
-		b1.add(lblXacNhan = new JLabel("3. XÁC NHẬN"));
+//		b1.add(lblXacNhan = new JLabel("3. XÁC NHẬN"));
 		b1.add(Box.createVerticalStrut(20));
 
 
@@ -196,7 +196,7 @@ public class UI_DatTour  extends JFrame{
 
 		// tạo bảng lưu thông tin khách hàng
 
-		String [] headers = {"STT","Tên Khách Hàng","Số điện thoại ","Email","Địa chỉ ","Giới Tính","Tuổi"};
+		String [] headers = {"STT","Tên Khách Hàng","Số điện thoại ","Email","Địa chỉ ","Giới Tính","Tuổi","Ghi Chú"};
 		tableModel = new DefaultTableModel(headers, 0);
 
 
@@ -225,7 +225,7 @@ public class UI_DatTour  extends JFrame{
 		});
 		lblThongTinLienHe.setForeground(new Color(255,153,0));
 		lblThanhToan.setForeground(Color.black);
-		lblXacNhan.setForeground(Color.black);
+		//lblXacNhan.setForeground(Color.black);
 		return box;
 	}
 	private JLabel lblTenTourThanhToan,lblMaTourThanhToan,lblNgayKhoiHanh,lblNgayKetThuc,lblThoiGian,lblGiaNguoiLon,lblGiaTreEm,lblPhuongTHucThanhToan,lblTongGia,lblTongNguoi;
@@ -240,15 +240,15 @@ public class UI_DatTour  extends JFrame{
 
 		box.add(b1=Box.createHorizontalBox());
 		b1.add(lblMaTourThanhToan = new JLabel("  Mã Tour: "));
-		ImageIcon iconMaTourThanhToan =  new ImageIcon("icon/Bar-Code-icon.png");
+		ImageIcon iconMaTourThanhToan =  new ImageIcon("img/icon/Bar-Code-icon.png");
 		Image image1 = iconMaTourThanhToan.getImage(); // transform it 
 		Image newimg1 = image1.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		iconMaTourThanhToan = new ImageIcon(newimg1);  // transform it back
 		lblMaTourThanhToan.setIcon(iconMaTourThanhToan);
-		//lblMaTourThanhToan.setIcon(new ImageIcon("/icon/Bar-Code-icon.png"));
+		//lblMaTourThanhToan.setIcon(new ImageIcon("/img/icon/Bar-Code-icon.png"));
 		b1.add(Box.createHorizontalStrut(200));
 		b1.add(lblTenTourThanhToan = new JLabel("Tên Tour: "));
-		ImageIcon iconTenTourThanhToan =  new ImageIcon("icon/email-send-icon.png");
+		ImageIcon iconTenTourThanhToan =  new ImageIcon("img/icon/email-send-icon.png");
 		Image image2 = iconTenTourThanhToan.getImage(); // transform it 
 		Image newimg2 = image2.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		iconTenTourThanhToan = new ImageIcon(newimg2);  // transform it back
@@ -256,26 +256,26 @@ public class UI_DatTour  extends JFrame{
 
 		box.add(b1=Box.createHorizontalBox());
 		b1.add(lblNgayKhoiHanh = new JLabel("Ngày Khởi Hành: "));
-		lblNgayKhoiHanh.setIcon(new ImageIcon("icon/calendar.png"));
+		lblNgayKhoiHanh.setIcon(new ImageIcon("img/icon/calendar.png"));
 		b1.add(Box.createHorizontalStrut(200));
 		b1.add(lblNgayKetThuc =new JLabel("Ngày Kết Thúc: "));
-		lblNgayKetThuc.setIcon(new ImageIcon("icon/calendar.png"));
+		lblNgayKetThuc.setIcon(new ImageIcon("img/icon/calendar.png"));
 		//	b1.add(Box.createVerticalStrut(20));
 
 
 		box.add(b1 = Box.createHorizontalBox());
 		b1.add(lblGiaNguoiLon = new JLabel("Giá Người Lớn :"));
-		lblGiaNguoiLon.setIcon(new ImageIcon("icon/money-bag.png"));
+		lblGiaNguoiLon.setIcon(new ImageIcon("img/icon/money-bag.png"));
 		b1.add(Box.createHorizontalStrut(200));
 		b1.add(lblGiaTreEm = new JLabel("Giá Trẻ Em: "));	
-		lblGiaTreEm.setIcon(new ImageIcon("icon/money-bag.png"));
+		lblGiaTreEm.setIcon(new ImageIcon("img/icon/money-bag.png"));
 
 		box.add(b1 = Box.createHorizontalBox());
 		b1.add(lblTongNguoi = new JLabel("Tổng Người: "));
-		lblTongNguoi.setIcon(new ImageIcon("icon/user_info.png"));
+		lblTongNguoi.setIcon(new ImageIcon("img/icon/user_info.png"));
 		b1.add(Box.createHorizontalStrut(200));
 		b1.add(lblTongGia = new JLabel("TỔNG GIÁ: "));
-		lblTongGia.setIcon(new ImageIcon("icon/money-bag.png"));
+		lblTongGia.setIcon(new ImageIcon("img/icon/money-bag.png"));
 		box.add(b1= Box.createVerticalBox());
 
 		b1.add(Box.createVerticalStrut(100));
@@ -290,6 +290,7 @@ public class UI_DatTour  extends JFrame{
 		JScrollPane scroll = new JScrollPane(list,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		b1.add(scroll);
 		box.add(b1 = Box.createHorizontalBox());
+		b1.add(Box.createHorizontalStrut(10));
 		b1.add(btnThanhToanTour = new JButton("   Thanh Toán   "));
 		
 		// Sự kiện khi bấm thanh toán
@@ -319,63 +320,63 @@ public class UI_DatTour  extends JFrame{
 		});
 
 		// sự kiện khi bấm nút tiếp theo -> BoxThanhToan
-		btnTiepTheo.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				split.setBottomComponent(XacNhan());
-			}
-		});
+//		btnTiepTheo.addActionListener(new ActionListener() {
+//
+//			public void actionPerformed(ActionEvent arg0) {
+//				// TODO Auto-generated method stub
+//				split.setBottomComponent(XacNhan());
+//			}
+//		});
 
 		lblThongTinLienHe.setForeground(Color.black);
 		lblThanhToan.setForeground(new Color(255,153,0));
-		lblXacNhan.setForeground(Color.black);
+		//lblXacNhan.setForeground(Color.black);
 		return box;
 	}
 
 
-	public Box XacNhan() {
-		Box box = Box.createVerticalBox();
-		box.setOpaque(true);
-		box.setBackground(Color.WHITE);
-		Box b1;
-		box.add(b1=Box.createVerticalBox());
-		b1.add(lblNhapThongTinKhachHang= new JLabel("XÁC NHẬN THÔNG TIN KHÁCH HÀNG"));
-
-		box.add(b1=Box.createVerticalBox());
-		b1.add(lblNguoiLon = new JLabel("Người Lớn (Trên 13 tuổi )"));
-		b1.add(Box.createHorizontalStrut(20));
-		b1.add(txtNguoiLon = new JTextField());
-		txtNguoiLon.setBounds(40, 80, 40, 20);
-
-		box.add(b1= Box.createVerticalBox());
-		b1.add(lblTreEm = new JLabel("Trẻ Em (Từ 3 đến 13 tuổi)"));
-		b1.add(Box.createHorizontalStrut(20));
-		b1.add(Box.createHorizontalStrut(20));
-		b1.add(txtTreEm = new JTextField());
-		b1.add(Box.createVerticalStrut(20));
-		box.add(b1 = Box.createHorizontalBox());
-
-		b1.add(btnTroVe = new JButton("Trở Về"));
-		b1.add(Box.createHorizontalStrut(300));
-		b1.add(btnTiepTheo = new JButton("Tiếp Theo"));
-		box.add(b1= Box.createVerticalBox());
-		b1.add(Box.createVerticalStrut(10));
-
-
-		// Sự Kiện khi bấm nút trở về -> BoxDienThongTin1
-		btnTroVe.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				split.setBottomComponent(BoxThanhToan());
-			}
-		});
-
-		lblThongTinLienHe.setForeground(Color.black);
-		lblThanhToan.setForeground(Color.black);
-		lblXacNhan.setForeground(new Color(255,153,0));
-
-		return box;
-	}
+//	public Box XacNhan() {
+//		Box box = Box.createVerticalBox();
+//		box.setOpaque(true);
+//		box.setBackground(Color.WHITE);
+//		Box b1;
+//		box.add(b1=Box.createVerticalBox());
+//		b1.add(lblNhapThongTinKhachHang= new JLabel("XÁC NHẬN THÔNG TIN KHÁCH HÀNG"));
+//
+//		box.add(b1=Box.createVerticalBox());
+//		b1.add(lblNguoiLon = new JLabel("Người Lớn (Trên 13 tuổi )"));
+//		b1.add(Box.createHorizontalStrut(20));
+//		b1.add(txtNguoiLon = new JTextField());
+//		txtNguoiLon.setBounds(40, 80, 40, 20);
+//
+//		box.add(b1= Box.createVerticalBox());
+//		b1.add(lblTreEm = new JLabel("Trẻ Em (Từ 3 đến 13 tuổi)"));
+//		b1.add(Box.createHorizontalStrut(20));
+//		b1.add(Box.createHorizontalStrut(20));
+//		b1.add(txtTreEm = new JTextField());
+//		b1.add(Box.createVerticalStrut(20));
+//		box.add(b1 = Box.createHorizontalBox());
+//
+//		b1.add(btnTroVe = new JButton("Trở Về"));
+//		b1.add(Box.createHorizontalStrut(300));
+//		b1.add(btnTiepTheo = new JButton("Tiếp Theo"));
+//		box.add(b1= Box.createVerticalBox());
+//		b1.add(Box.createVerticalStrut(10));
+//
+//
+//		// Sự Kiện khi bấm nút trở về -> BoxDienThongTin1
+//		btnTroVe.addActionListener(new ActionListener() {
+//
+//			public void actionPerformed(ActionEvent arg0) {
+//				// TODO Auto-generated method stub
+//				split.setBottomComponent(BoxThanhToan());
+//			}
+//		});
+//
+//		lblThongTinLienHe.setForeground(Color.black);
+//		lblThanhToan.setForeground(Color.black);
+//		lblXacNhan.setForeground(new Color(255,153,0));
+//
+//		return box;
+//	}
 }
