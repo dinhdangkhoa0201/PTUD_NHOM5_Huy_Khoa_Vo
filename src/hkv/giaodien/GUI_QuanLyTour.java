@@ -33,10 +33,10 @@ public class GUI_QuanLyTour extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private DefaultTableModel tblModel;
-	private JTable table;
-	private JSplitPane split;
-	private JScrollPane scroll;
+	private DefaultTableModel tblModel, tableModelModal;
+	private JTable table, tableModal;
+	private JSplitPane split, splitModal;
+	private JScrollPane scroll, scrollModal;
 	private JLabel lblTitle, lblMaTour, lblTenTour, lblMaHanhTrinh, lblNgayKhoiHanh, lblNgayKetThuc, lblHuongDanVien, lblPhuongTien, lblGiaTour, lblTinhTrang, lblSoLuongKH;
 	private JTextField txtMaTour, txtTenTour, txtGiaTour;
 	private JRadioButton rdbMo, rdbChuaMo;
@@ -46,6 +46,7 @@ public class GUI_QuanLyTour extends JFrame{
 	private String[] PhuongTien = {"Xe", "Máy bay"};
 	private String[] SoLuong = {"10", "20", "30", "40", "50", "60", "70", "80", "90", "100"};
 	private String [] columnNames = {"STT", "Mã Tour", "Tên Tour", "Mã Hành Trình", "Ngày Khởi Hành", "Ngày Kết Thúc", "Hướng Dẫn Viên", "Phương Tiện", "Giá Tour", "Tình Trạng", "Số Lượng Khách Hàng"};
+	private String[] columnModal = {"Họ và Tên", "Ngày Sinh", "Giới Tính", "Loại Hành Khách"};
 	private JTableHeader theader;
 	
 	public GUI_QuanLyTour() {
@@ -272,7 +273,12 @@ public class GUI_QuanLyTour extends JFrame{
 	
 	private Box boxChiTiet() {
 		Box box = Box.createVerticalBox();
-		box.add(boxChiTietTop());
+		splitModal = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+		box.add(splitModal);
+		splitModal.setResizeWeight(0.5);
+		splitModal.setEnabled(false);
+		splitModal.setTopComponent(boxChiTietTop());
+		splitModal.setBottomComponent(boxChiTietTable());
 		return box;
 	}
 	
@@ -280,6 +286,16 @@ public class GUI_QuanLyTour extends JFrame{
 		Box box = Box.createVerticalBox();
 		
 		return box;		
+	}
+	
+	private Box boxChiTietTable() {
+		Box box = Box.createVerticalBox();
+		Box B = Box.createHorizontalBox();
+		box.add(B);
+		tableModelModal = new DefaultTableModel(columnModal, 2);
+		scrollModal = new JScrollPane(tableModal = new JTable(tableModelModal), JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		B.add(scrollModal);
+		return box;
 	}
 	
 }

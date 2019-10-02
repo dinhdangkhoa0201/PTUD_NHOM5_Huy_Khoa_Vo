@@ -3,9 +3,13 @@ package hkv.giaodien;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +23,7 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -40,11 +45,11 @@ public class GUI_QuanLyNhanVien extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = -2788527835229414597L;
-	private DefaultTableModel tblModel;
-	private JTable table;
-	private JSplitPane split;
+	private DefaultTableModel tblModel, tableModelModal;
+	private JTable table, tableModal;
+	private JSplitPane split, splitModal;
 	private JPasswordField pwdNhanVien;
-	private JScrollPane scrollPane, scrollPane1;
+	private JScrollPane scrollPane, scrollPane1, scrollModal;
 	private JLabel lblTitle, lblAnhDaiDien, lblMaNV, lblHo, lblTen, lblGioiTinh, lblNgaySinh, lblTinh, lblSoDienThoai, lblEmail, lblMatKhau, lblGhiChu, lblLuong, lblAnh;
 	private JTextField txtMaNV, txtHo, txtTen, txtSoDienThoai, txtEmail, txtMatKhau, txtLuong;
 	private JTextArea txtGhiChu;
@@ -64,7 +69,7 @@ public class GUI_QuanLyNhanVien extends JFrame{
 		setLocationRelativeTo(null);
 		add(boxNhanVien());
 	}
-	
+
 	public Box boxQuanLyNhanVien() {
 		Box box = Box.createVerticalBox();
 		Box.createHorizontalBox();
@@ -73,10 +78,10 @@ public class GUI_QuanLyNhanVien extends JFrame{
 		split.setTopComponent(boxTop());
 		split.setBottomComponent(boxTable());
 		split.setOneTouchExpandable(true);
-		
+
 		return box;
 	}
-	
+
 	public Box boxNhanVien() {
 		int fontsizetxt = 15;
 		int fontsizelbl = 15;
@@ -84,38 +89,38 @@ public class GUI_QuanLyNhanVien extends JFrame{
 		Box box = Box.createVerticalBox();
 		Box B = Box.createHorizontalBox();
 		box.add(Box.createVerticalStrut(20));
-		
+
 		box.add(B);
 		B.add(lblAnhDaiDien = new JLabel());
 		lblAnhDaiDien.setSize(125, 125);
 		setPicture(lblAnhDaiDien, "img\\non-avatar.png");
 		box.add(Box.createVerticalStrut(5));
-		
-		
+
+
 		box.add(B = Box.createHorizontalBox());
 		B.add(btnAnhDaiDien = new JButton("Thêm Ảnh"));
 		box.add(Box.createVerticalStrut(5));
-		
+
 		box.add(B = Box.createHorizontalBox());
 		B.add(lblMaNV = new JLabel("Mã Nhân Viên : "));
 		lblMaNV.setFont(new Font("Times New Roman", Font.ITALIC, fontsizelbl));
 		B.add(txtMaNV = new JTextField());
 		box.add(Box.createVerticalStrut(khoangcach));
-		
+
 		box.add(B = Box.createHorizontalBox());
 		B.add(lblHo = new JLabel("Họ và Tên Đệm : "));
 		lblHo.setFont(new Font("Times New Roman", Font.ITALIC, fontsizelbl));
 		B.add(txtHo = new JTextField());
 		lblHo.setLabelFor(txtHo);
 		box.add(Box.createVerticalStrut(khoangcach));
-		
+
 		box.add(B = Box.createHorizontalBox());
 		B.add(lblTen = new JLabel("Tên : "));
 		lblTen.setFont(new Font("Times New Roman", Font.ITALIC, fontsizelbl));
 		B.add(txtTen = new JTextField());
 		lblTen.setLabelFor(txtTen);
 		box.add(Box.createVerticalStrut(khoangcach));
-		
+
 		box.add(B = Box.createHorizontalBox());
 		B.add(lblGioiTinh = new JLabel("Giới tính : "));
 		lblGioiTinh.setFont(new Font("Times New Roman", Font.ITALIC, fontsizelbl));
@@ -126,17 +131,17 @@ public class GUI_QuanLyNhanVien extends JFrame{
 		B.add(rdbNam);
 		B.add(Box.createHorizontalStrut(20));
 		B.add(rdbNu);
-//		B.add(Box.createHorizontalStrut(50));
-		
+		//		B.add(Box.createHorizontalStrut(50));
+
 		box.add(Box.createVerticalStrut(khoangcach));
-		
+
 		box.add(B = Box.createHorizontalBox());
 		B.add(lblNgaySinh = new JLabel("Ngày Sinh : "));
 		lblNgaySinh.setFont(new Font("Times New Roman", Font.ITALIC, fontsizelbl));
 		B.add(ngaySinh = new JDateChooser());
 		lblNgaySinh.setLabelFor(ngaySinh);
 		box.add(Box.createVerticalStrut(khoangcach));
-		
+
 		box.add(B = Box.createHorizontalBox());
 		B.add(lblTinh = new JLabel("Tỉnh / Thành Phố : "));
 		lblTinh.setFont(new Font("Times New Roman", Font.ITALIC, fontsizelbl));
@@ -144,32 +149,32 @@ public class GUI_QuanLyNhanVien extends JFrame{
 		lblTinh.setLabelFor(cbxTinh);
 		cbxTinh.setFont(new Font("Times New Roman", Font.PLAIN, fontsizetxt));
 		box.add(Box.createVerticalStrut(khoangcach));
-		
+
 		box.add(B = Box.createHorizontalBox());
 		B.add(lblSoDienThoai = new JLabel("Số điện thoại : "));
 		lblSoDienThoai.setFont(new Font("Times New Roman", Font.ITALIC, fontsizelbl));
 		B.add(txtSoDienThoai = new JTextField());
 		lblSoDienThoai.setLabelFor(txtSoDienThoai);
 		box.add(Box.createVerticalStrut(khoangcach));
-		
+
 		box.add(B = Box.createHorizontalBox());
 		B.add(lblEmail = new JLabel("Email : "));
 		lblEmail.setFont(new Font("Times New Roman", Font.ITALIC, fontsizelbl));
 		B.add(txtEmail = new JTextField());
 		lblEmail.setLabelFor(txtEmail);
 		box.add(Box.createVerticalStrut(khoangcach));
-		
-		
+
+
 		box.add(B = Box.createHorizontalBox());
 		B.add(lblMatKhau = new JLabel("Mật khẩu : "));
 		lblMatKhau.setFont(new Font("Times New Roman", Font.ITALIC, fontsizelbl));
 		B.add(txtMatKhau = new JTextField());
 		lblMatKhau.setLabelFor(txtMatKhau);
 		box.add(Box.createVerticalStrut(khoangcach));
-		
+
 		txtGhiChu = new JTextArea();
 		scrollPane = new JScrollPane(txtGhiChu, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		
+
 		box.add(B = Box.createHorizontalBox());
 		B.add(lblGhiChu = new JLabel("Ghi chú : "));
 		lblGhiChu.setFont(new Font("Times New Roman", Font.ITALIC, fontsizelbl));
@@ -177,14 +182,14 @@ public class GUI_QuanLyNhanVien extends JFrame{
 		B.add(Box.createHorizontalStrut(5));
 		lblGhiChu.setLabelFor(scrollPane);
 		box.add(Box.createVerticalStrut(khoangcach));
-			
+
 		box.add(B = Box.createHorizontalBox());
 		B.add(lblLuong = new JLabel("Lương : "));
 		lblLuong.setFont(new Font("Times New Roman", Font.ITALIC, fontsizelbl));
 		B.add(txtLuong = new JTextField());
 		lblLuong.setLabelFor(txtLuong);
 		box.add(Box.createVerticalStrut(khoangcach));
-		
+
 		box.add(B = Box.createHorizontalBox());
 		B.add(lblAnh = new JLabel("Ảnh : "));
 		lblAnh.setFont(new Font("Times New Roman", Font.ITALIC, fontsizelbl));
@@ -194,7 +199,7 @@ public class GUI_QuanLyNhanVien extends JFrame{
 		B.add(Box.createHorizontalStrut(50));
 		box.add(Box.createVerticalStrut(khoangcach));
 
-		
+
 		box.add(B = Box.createHorizontalBox());
 		B.add(btnThem = new JButton("Thêm"));
 		B.add(Box.createHorizontalStrut(5));
@@ -204,17 +209,17 @@ public class GUI_QuanLyNhanVien extends JFrame{
 		box.add(Box.createVerticalStrut(10));
 		box.add(B = Box.createHorizontalBox());
 		B.add(btnLuu = new JButton("Lưu"));
-		
+
 		btnThem.setMaximumSize(new Dimension(120, 50));
 		btnXoa.setMaximumSize(new Dimension(120, 50));
 		btnSua.setMaximumSize(new Dimension(120, 50));
 		btnLuu.setMaximumSize(new Dimension(370, 50));
-		
+
 		btnThem.setFont(new Font("Arial", Font.PLAIN, 20));
 		btnSua.setFont(new Font("Arial", Font.PLAIN, 20));
 		btnXoa.setFont(new Font("Arial", Font.PLAIN, 20));
 		btnLuu.setFont(new Font("Arial", Font.PLAIN, 20));
-		
+
 		txtMaNV.setFont(new Font("Arial", Font.PLAIN, fontsizetxt));
 		txtHo.setFont(new Font("Arial", Font.PLAIN, fontsizetxt));
 		txtTen.setFont(new Font("Arial", Font.PLAIN, fontsizetxt));
@@ -223,7 +228,7 @@ public class GUI_QuanLyNhanVien extends JFrame{
 		txtMatKhau.setFont(new Font("Arial", Font.PLAIN, fontsizetxt));
 		txtLuong.setFont(new Font("Arial", Font.PLAIN, fontsizetxt));
 		txtGhiChu.setFont(new Font("Arial", Font.PLAIN, fontsizetxt));
-		
+
 		txtMaNV.setMaximumSize(new Dimension(Short.MAX_VALUE, Short.MAX_VALUE));
 		txtHo.setMaximumSize(new Dimension(Short.MAX_VALUE, Short.MAX_VALUE));
 		txtTen.setMaximumSize(new Dimension(Short.MAX_VALUE, Short.MAX_VALUE));
@@ -233,12 +238,12 @@ public class GUI_QuanLyNhanVien extends JFrame{
 		txtMatKhau.setMaximumSize(new Dimension(Short.MAX_VALUE, Short.MAX_VALUE));
 		txtLuong.setMaximumSize(new Dimension(Short.MAX_VALUE, Short.MAX_VALUE));
 		txtGhiChu.setMinimumSize(new Dimension(Short.MAX_VALUE,	Short.MAX_VALUE));
-		
+
 		btnThem.setBackground(Color.GREEN);
 		btnXoa.setBackground(Color.RED);
 		btnSua.setBackground(Color.GRAY);
 		btnLuu.setBackground(Color.ORANGE);
-		
+
 		lblMaNV.setPreferredSize(new Dimension(lblTinh.getPreferredSize().width, 20));
 		lblHo.setPreferredSize(new Dimension(lblTinh.getPreferredSize().width, 20));
 		lblTen.setPreferredSize(new Dimension(lblTinh.getPreferredSize().width, 20));
@@ -250,17 +255,17 @@ public class GUI_QuanLyNhanVien extends JFrame{
 		lblGhiChu.setPreferredSize(new Dimension(lblTinh.getPreferredSize().width, 20));
 		lblLuong.setPreferredSize(new Dimension(lblTinh.getPreferredSize().width, 20));
 		lblAnh.setPreferredSize(new Dimension(lblTinh.getPreferredSize().width, 20));
-		
+
 		int width = (int) (screen.getWidth()/2);
 		int height = (int) (screen.getHeight()/2);
 
-		
+
 		txtGhiChu.setLineWrap(true);
 		txtGhiChu.setWrapStyleWord(true);
 		txtGhiChu.setRows(5);
-		
+
 		btnAnhDaiDien.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -278,9 +283,9 @@ public class GUI_QuanLyNhanVien extends JFrame{
 				}
 			}
 		});
-		
+
 		btnFile.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -295,10 +300,10 @@ public class GUI_QuanLyNhanVien extends JFrame{
 				}
 			}
 		});
-		
+
 		return box;
 	}
-	
+
 	private Box boxTop() {
 		Box box = Box.createVerticalBox();
 		Box B = Box.createHorizontalBox();
@@ -306,55 +311,81 @@ public class GUI_QuanLyNhanVien extends JFrame{
 		box.add(Box.createVerticalStrut(20));
 		box.add(B);
 		B.add(lblTitle = new JLabel("Danh Sách Nhân Viên"));
-		
+
 		lblTitle.setFont(new Font("Arial", Font.ITALIC, 30));
-		
+
 		return box;
 	}
-	
+
 	private Box boxTable() {
 		Box box = Box.createVerticalBox();
 		Box B = Box.createHorizontalBox();
 		box.add(B);
-		tblModel = new DefaultTableModel(header, 0);
+		tblModel = new DefaultTableModel(header, 2);
 		scrollPane1 = new JScrollPane(table = new JTable(tblModel), JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);	
 		B.add(scrollPane1);
 
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setDefaultEditor(Object.class, null);
-		
+
 		pwdNhanVien = new JPasswordField();
 		DefaultCellEditor editor = new DefaultCellEditor(pwdNhanVien);
 		table.getColumnModel().getColumn(9).setCellEditor(editor);
-		
-		
-		
-		return box;
-	}
-	
-	public  void setPicture(JLabel label ,String filename){
-		try {
-			BufferedImage image = ImageIO.read(new File(filename));
-			int x =label.getSize().width;
-			int y =label.getSize().height;
-			int ix =image.getWidth();
-			int iy =image.getHeight();
 
-			int dx=0;
-			int dy=0;
-			if(x /y > ix/iy){
-				dy=y;
-				dx=dy*ix /iy;
-			}else{
-				dx=x;
-				dy=dx*iy/ix;
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount() == 2 && table.getSelectedRow() != -1)
+					modalChiTietNhanVien().setVisible(true);
 			}
-
-			ImageIcon icon = new ImageIcon(image.getScaledInstance(dx, dy, BufferedImage.SCALE_SMOOTH));
-			label.setIcon(icon);
-		} catch (IOException ex) {
-			Logger.getLogger(GUI_Main.class.getName()).log(Level.SEVERE, null, ex);
+		});
+		return box;
 		}
 
+		private JDialog modalChiTietNhanVien() {
+			Frame frame = null;
+			JDialog dialogChiTietHoaDon = new JDialog(frame, "Thông Tin Chi Tiết", true);
+			dialogChiTietHoaDon.add(boxChiTiet());
+			dialogChiTietHoaDon.setSize(800, 700);
+			dialogChiTietHoaDon.setLocationRelativeTo(null);
+
+			return dialogChiTietHoaDon;
+		}
+
+		private Box boxChiTiet() {
+			Box box = Box.createVerticalBox();
+			box.add(boxChiTietTop());
+			return box;
+		}
+
+		private Box boxChiTietTop() {
+			Box box = Box.createVerticalBox();
+
+			return box;	
+		}
+
+		public  void setPicture(JLabel label ,String filename){
+			try {
+				BufferedImage image = ImageIO.read(new File(filename));
+				int x =label.getSize().width;
+				int y =label.getSize().height;
+				int ix =image.getWidth();
+				int iy =image.getHeight();
+
+				int dx=0;
+				int dy=0;
+				if(x /y > ix/iy){
+					dy=y;
+					dx=dy*ix /iy;
+				}else{
+					dx=x;
+					dy=dx*iy/ix;
+				}
+
+				ImageIcon icon = new ImageIcon(image.getScaledInstance(dx, dy, BufferedImage.SCALE_SMOOTH));
+				label.setIcon(icon);
+			} catch (IOException ex) {
+				Logger.getLogger(GUI_Main.class.getName()).log(Level.SEVERE, null, ex);
+			}
+
+		}
 	}
-}

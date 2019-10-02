@@ -31,7 +31,7 @@ public class GUI_QuanLyKhachHang extends JFrame {
 	private DefaultTableModel tblModel;
 	private JTable table;
 	private JSplitPane split;
-	private JScrollPane scrollPane;
+	private JScrollPane scrollPane, scrollTable;
 	private JLabel lblTitle, lblMaNV, lblHo, lblTen, lblGioiTinh, lblNgaySinh, lblTinh, lblSoDienThoai, lblEmail, lblMatKhau, lblGhiChu, lblCMND, lblAnh;
 	private JTextField txtMaNV, txtHo, txtTen, txtTinh, txtSoDienThoai, txtEmail, txtMatKhau, txtCMND;
 	private JTextArea txtGhiChu;
@@ -42,6 +42,7 @@ public class GUI_QuanLyKhachHang extends JFrame {
 	private JComboBox<String> cbxTinh;
 	private JFileChooser avatar;
 	private String[] tinh = {"Thành Phố Hồ Chí Minh", "Hà Nội"};
+	private String[] columnName = {"STT", "Mã Khách Hàng", "Họ và Tên", "Ngày Sinh", "Giới Tính", "Email", "Địa Chỉ"}; 
 	public GUI_QuanLyKhachHang() {
 		// TODO Auto-generated constructor stub
 		setSize(400, 800);
@@ -61,6 +62,7 @@ public class GUI_QuanLyKhachHang extends JFrame {
 		split.setOneTouchExpandable(true);
 		return box;
 	}
+	
 	
 	public Box boxKhachHang() {
 		int fontsizetxt = 20;
@@ -263,11 +265,13 @@ public class GUI_QuanLyKhachHang extends JFrame {
 	private Box boxTable() {
 		Box box = Box.createVerticalBox();
 		Box B = Box.createHorizontalBox();
+		box.add(B);
 		tblModel = new DefaultTableModel();
 		table = new JTable(tblModel);
+		scrollTable = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-		B.add(table);
+		B.add(scrollPane);
 		
 		return box;
 	}
