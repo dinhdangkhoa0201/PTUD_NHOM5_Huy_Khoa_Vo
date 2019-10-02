@@ -141,7 +141,7 @@ public class GUI_KhachHang extends JFrame implements ActionListener, MouseListen
 //
 		box.add(b1 = Box.createVerticalBox());
 		b1.add(lblKhachHang = new JLabel(" Lê Đình Huy"));
-		ImageIcon iconkhachhang =  new ImageIcon("icon/round-account-button-with-user-inside.png");
+		ImageIcon iconkhachhang =  new ImageIcon("img/icon/round-account-button-with-user-inside.png");
 		Image image = iconkhachhang.getImage(); // transform it 
 		Image newimg = image.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		iconkhachhang = new ImageIcon(newimg);  // transform it back
@@ -157,7 +157,7 @@ public class GUI_KhachHang extends JFrame implements ActionListener, MouseListen
 			thongtincanhan=new JMenuItem("Thông Tin Cá Nhân");    
 			mb=new JMenuBar();        
 			khachhang=new JMenu("                                  ");
-			khachhang.setIcon(new ImageIcon("/icon/arrow-point-to-right.png"));
+			khachhang.setIcon(new ImageIcon("/img/icon/arrow-point-to-right.png"));
 			khachhang.add(dangxuat);khachhang.add(thongtincanhan);
 			mb.add(khachhang);
 			//f.add(mb);f.add(ta);  
@@ -191,7 +191,7 @@ public class GUI_KhachHang extends JFrame implements ActionListener, MouseListen
 
 		GUI_DanhSachTour guidattour =  new GUI_DanhSachTour();
 		split1.setLeftComponent(BoxMainLeft());
-		split1.setRightComponent(guidattour.BoxMainDatTour());
+		split1.setRightComponent(guidattour.BoxMain());
 	
 		
 		// tạo sự kiện khi bấm tour đã đặt
@@ -226,7 +226,7 @@ public class GUI_KhachHang extends JFrame implements ActionListener, MouseListen
 				if(obj.equals(btnDatTour))
 				{
 					GUI_DanhSachTour guidattour =  new GUI_DanhSachTour();
-					split1.setRightComponent(guidattour.BoxMainDatTour());
+					split1.setRightComponent(guidattour.BoxMain());
 					btnDatTour.setForeground(new Color(51,153,255));
 					btnTourDaDat.setForeground(Color.BLACK);
 					btnThongBao.setForeground(Color.black);
@@ -281,7 +281,7 @@ public class GUI_KhachHang extends JFrame implements ActionListener, MouseListen
 		box.add(b1 = Box.createVerticalBox());
 		box.add(Box.createVerticalStrut(15));
 		b1.add(btnDatTour = new JButton("  Đặt Tour         "));
-		ImageIcon icondattour =  new ImageIcon("icon/earth-pictures.png");
+		ImageIcon icondattour =  new ImageIcon("img/icon/earth-pictures.png");
 		Image image = icondattour.getImage(); // transform it 
 		Image newimg = image.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		icondattour = new ImageIcon(newimg);  // transform it back
@@ -293,7 +293,7 @@ public class GUI_KhachHang extends JFrame implements ActionListener, MouseListen
 
 		box.add(b1= Box.createVerticalBox());
 		b1.add(btnTourDaDat = new JButton("  Tour Đã Đặt       "));
-		ImageIcon iconTourDaDat =  new ImageIcon("icon/shopping-list.png");
+		ImageIcon iconTourDaDat =  new ImageIcon("img/icon/shopping-list.png");
 		Image image1 = iconTourDaDat.getImage(); // transform it 
 		Image newimg1 = image1.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		iconTourDaDat = new ImageIcon(newimg1);  // transform it back
@@ -305,7 +305,7 @@ public class GUI_KhachHang extends JFrame implements ActionListener, MouseListen
 
 		box.add(Box.createVerticalBox());
 		b1.add(btnThongBao = new JButton("  Thông Báo        "));
-		ImageIcon iconThongBao =  new ImageIcon("icon/notification.png");
+		ImageIcon iconThongBao =  new ImageIcon("img/icon/notification.png");
 		Image image2 = iconThongBao.getImage(); // transform it 
 		Image newimg2 = image2.getScaledInstance(30, 30,  java.awt.Image.SCALE_REPLICATE); // scale it the smooth way  
 		iconThongBao = new ImageIcon(newimg2);  // transform it back
